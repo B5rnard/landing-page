@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mintrik - Effortless Fun, Enriching Play</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dist/styles.css">
+  <style>
+    /* Refined Gradient Background */
+    body {
+      background: 
+        linear-gradient(125deg, #1c395e 0%, #1d4e89 35%, rgba(146, 188, 231, 0.8) 100%),
+        radial-gradient(circle at 75% 25%, rgba(229, 237, 249, 0.4) 0%, transparent 45%),
+        radial-gradient(circle at 25% 75%, rgba(197, 218, 242, 0.3) 0%, transparent 40%);
+      background-blend-mode: soft-light;
+      min-height: 100vh;
+    }
+
+    /* Enhanced Text Shadow for readability */
+    .text-shadow {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Refined Card Hover Effects */
+    .game-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .game-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Grid Item Animation */
+    .grid-item {
+      transition: transform 0.3s ease;
+    }
+
+    .grid-item:hover {
+      transform: scale(1.05);
+    }
+
+    /* WordCraft Showcase Styles */
+    .wordcraft-showcase {
+      position: relative;
+      background: linear-gradient(135deg, rgba(229, 237, 249, 0.95) 0%, rgba(146, 188, 231, 0.95) 100%);
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-bottom: 3rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .title-container {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .title-letter {
+      font-size: 2.25rem;
+      font-weight: bold;
+      color: #1c395e;
+      transform: translateY(0);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .wordcraft-showcase:hover .title-letter {
+      transform: translateY(-4px);
+    }
+
+    .wordcraft-showcase:hover .title-letter:nth-child(even) {
+      transform: translateY(4px);
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 0.75rem;
+      margin: 1.5rem 0;
+    }
+
+    .letter-tile {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1d4e89;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      transform: scale(1);
+      transition: all 0.3s ease;
+    }
+
+    .wordcraft-showcase:hover .letter-tile {
+      transform: scale(1.1);
+      background: #1c395e;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.3;
+      background: #92bce7;
+    }
+
+    .blob-1 {
+      width: 16rem;
+      height: 16rem;
+      top: -8rem;
+      right: -8rem;
+    }
+
+    .blob-2 {
+      width: 12rem;
+      height: 12rem;
+      bottom: -6rem;
+      left: -6rem;
+    }
+
+    /* NumberQuest Showcase Styles */
+    .numberquest-showcase {
+      position: relative;
+      background: linear-gradient(135deg, rgba(240, 253, 244, 0.95) 0%, rgba(52, 211, 153, 0.95) 100%);
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-bottom: 3rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .number-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 0.75rem;
+      margin: 1.5rem 0;
+    }
+
+    .number-tile {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #059669;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      transform: rotateY(0deg);
+      transition: all 0.4s ease;
+      perspective: 1000px;
+    }
+
+    .numberquest-showcase:hover .number-tile {
+      background: #047857;
+    }
+
+    .numberquest-showcase:hover .number-tile:nth-child(odd) {
+      transform: rotateY(180deg);
+    }
+
+    .numberquest-showcase:hover .number-tile:nth-child(even) {
+      transform: rotateX(180deg);
+    }
+
+    .number-title {
+      font-size: 2.25rem;
+      font-weight: bold;
+      color: #065f46;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .number-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: #059669;
+      transition: width 0.4s ease;
+    }
+
+    .numberquest-showcase:hover .number-title::after {
+      width: 100%;
+    }
+
+    .number-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.3;
+      background: #34d399;
+    }
+
+    .number-blob-1 {
+      width: 16rem;
+      height: 16rem;
+      top: -8rem;
+      right: -8rem;
+    }
+
+    .number-blob-2 {
+      width: 12rem;
+      height: 12rem;
+      bottom: -6rem;
+      left: -6rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="text-white py-6">
+    <div class="container mx-auto flex items-center justify-between px-6">
+      <div class="text-3xl font-sans font-bold tracking-tight">Mintrik</div>
+      <ul class="flex space-x-8">
+        <li><a href="#" class="hover:text-[#75BD91] transition-colors duration-300">Home</a></li>
+        <li><a href="#" class="hover:text-[#75BD91] transition-colors duration-300">Games</a></li>
+        <li><a href="#" class="hover:text-[#75BD91] transition-colors duration-300">About Us</a></li>
+        <li><a href="#" class="hover:text-[#75BD91] transition-colors duration-300">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="py-24 text-white text-center">
+    <div class="container mx-auto px-6">
+      <h1 class="text-6xl font-sans font-bold mb-12 text-shadow leading-tight">Effortless Fun,<br>Enriching Play</h1>
+      <div class="grid grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
+        <div class="grid-item bg-[#75BD91] h-28 rounded-lg shadow-lg"></div>
+        <div class="grid-item bg-[#F49C4E] h-28 rounded-lg shadow-lg"></div>
+        <div class="grid-item bg-[#A4778B] h-28 rounded-lg shadow-lg"></div>
+      </div>
+      <a href="#" class="inline-block bg-[#F49C4E] text-white px-8 py-4 rounded-full text-xl font-sans font-semibold hover:bg-[#D87C2F] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+        Start Playing!
+      </a>
+    </div>
+  </section>
+
+  <!-- Games Display Section -->
+  <section class="py-24">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-sans font-bold text-center text-white mb-16">Our Games</h2>
+
+      <!-- WordCraft Showcase -->
+      <div class="max-w-4xl mx-auto mb-16">
+        <div class="wordcraft-showcase p-8">
+          <div class="blob blob-1"></div>
+          <div class="blob blob-2"></div>
+          <div class="relative z-10">
+            <div class="title-container">
+              <span class="title-letter">W</span>
+              <span class="title-letter">o</span>
+              <span class="title-letter">r</span>
+              <span class="title-letter">d</span>
+              <span class="title-letter">C</span>
+              <span class="title-letter">r</span>
+              <span class="title-letter">a</span>
+              <span class="title-letter">f</span>
+              <span class="title-letter">t</span>
+            </div>
+            <p class="font-outfit text-lg text-[#1c395e]">Challenge your vocabulary in this fast-paced word adventure.</p>
+            <div class="preview-grid">
+              <div class="letter-tile">W</div>
+              <div class="letter-tile">O</div>
+              <div class="letter-tile">R</div>
+              <div class="letter-tile">D</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NumberQuest Showcase -->
+      <div class="max-w-4xl mx-auto mb-16">
+        <div class="numberquest-showcase p-8">
+          <div class="number-blob number-blob-1"></div>
+          <div class="number-blob number-blob-2"></div>
+          <div class="relative z-10">
+            <h3 class="number-title">NumberQuest</h3>
+            <p class="font-outfit text-lg text-[#065f46] mb-6">Master the art of mathematical puzzles in this engaging brain teaser.</p>
+            <div class="number-grid">
+              <div class="number-tile">1</div>
+              <div class="number-tile">2</div>
+              <div class="number-tile">3</div>
+              <div class="number-tile">4</div>
+              <div class="number-tile">5</div>
+              <div class="number-tile">6</div>
+              <div class="number-tile">7</div>
+              <div class="number-tile">8</div>
+              <div class="number-tile">9</div>
+            </div>
+            <button class="bg-[#059669] text-white px-8 py-4 rounded-full text-xl font-semibold hover:bg-[#047857] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              Begin the Quest
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other game cards (placeholder) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div class="game-card bg-white bg-opacity-95 rounded-xl shadow-lg p-8">
+          <h3 class="text-2xl font-sans font-bold mb-4 text-[#1D4E89]">Borderline</h3>
+          <p class="font-outfit mb-4 text-gray-700">Identify a hidden country using geography-based clues.</p>
+          <a href="#" class="inline-block text-[#1D4E89] font-semibold hover:text-[#75BD91] transition-colors duration-300">Play Now &rarr;</a>
+        </div>
+        <div class="game-card bg-white bg-opacity-95 rounded-xl shadow-lg p-8">
+          <h3 class="text-2xl font-sans font-bold mb-4 text-[#1D4E89]">ColorPop</h3>
+          <p class="font-outfit mb-4 text-gray-700">Match colors within a grid to reach a target score.</p>
+          <a href="#" class="inline-block text-[#1D4E89] font-semibold hover:text-[#75BD91] transition-colors duration-300">Play Now &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-white py-8">
+    <div class="container mx-auto px-6 text-center">
+      <p class="font-outfit mb-4">&copy; 2023 Mintrik. All rights reserved.</p>
+      <div class="flex justify-center space-x-6">
+        <a href="#" class="hover:text-[#75BD91] transition-colors duration-300">Facebook</a>
+        <a href="#" class="hover:text-[#75BD91] transition-colors duration-300">Twitter</a>
+        <a href="#" class="hover:text-[#75BD91] transition-colors duration-300">Instagram</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

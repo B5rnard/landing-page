@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add this to your styles.css file */
+.bg-mesh-gradient {
+    background: radial-gradient(at 15% 20%, #75BD91 0%, transparent 50%),
+                radial-gradient(at 85% 80%, #F49C4E 0%, transparent 50%),
+                radial-gradient(at 50% 50%, #A4778B 0%, transparent 50%),
+                #1D4E89; /* Fallback background color */
+    background-blend-mode: screen;
+  }
+  
